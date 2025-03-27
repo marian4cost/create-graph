@@ -1,7 +1,9 @@
 const express = require("express")
 const app = express()
+const PORT = 4000
 const graphRoute = require("./route/graph-route")
 
+app.use(express.json())
 app.use("", graphRoute)
 
-app.listen(4000)
+app.listen(PORT, () => console.log(`serivdor funcionando perfeitamente na porta ${PORT}`))
