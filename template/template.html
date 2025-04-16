@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Gráficos - Gráfico Gerado</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Gráfico Gerado</h1>
+    <canvas id="my-graph"></canvas>
+
+    <script>
+        fetch("http://localhost:4000/read").then(res => res.json()).then(data => {
+            const graph = document.getElementById("my-graph").getContext("2d")
+
+            new Chart(graph, {
+                type: data.type,
+                data: {
+                    labels: data.label,
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: "blue",
+                    }]
+                }
+            })
+        })
+        .catch(error => console.log("algum erro ao carregar dados da API"))
+    </script>
+</body>
+</html>
